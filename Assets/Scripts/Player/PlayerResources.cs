@@ -15,20 +15,29 @@ public class PlayerResources : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-        //TODO: if has component of type collectible
-        //and player shots still less than max shots
-        //add one to player shots and remove object from play
-        if (m_playerShots < m_maxPlayerShots)
+        if (other.CompareTag("ManaPot"))
         {
             Debug.Log("Player Shots: " + m_playerShots);
-            if (other.CompareTag("ManaPot"))
+            if (m_playerShots < m_maxPlayerShots)
             {
                 other.GetComponent<ManaPot>().OnCollected();
                 m_playerShots++;
             }
         }
 		//TODO: if has component of type spell,
-		//check who owner and if different, take damage.
+		//check who owner and if different or take damage.
+		else if(other.tag == "Spell");
+		{
+			Spell _otherSpell = other.GetComponent<Spell>();
+			if(!_otherSpell)
+			{
+				Debug.LogError("Object " + other.name + " has tag Spell, but has no spell component.");
+			}
+			else if (_otherSpell.Owner != gameObject)
+			{
+
+			}
+		}
 	}
 
 	public uint PlayerHealth
