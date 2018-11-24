@@ -222,7 +222,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
@@ -269,9 +269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaPot: {fileID: 1194026758317250, guid: abd2c922fdaca094494d490028fd5d57, type: 2}
+  pots: []
   spawnRate: 1
-  spawnLimit: 5
   spawnTime: 0
+  firstSpawnTime: 3
+  spawnLimit: 5
 --- !u!4 &1519079291
 Transform:
   m_ObjectHideFlags: 0
