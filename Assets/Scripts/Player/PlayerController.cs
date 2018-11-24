@@ -12,18 +12,19 @@ public class PlayerController : MonoBehaviour
 		Block
 	}
 
-	private Transform m_transform;
+	private Rigidbody2D m_rigidbody2D;
 	private PlayerShooter m_playerShooter;
-	
-	private Queue<PlayerAction> m_playerActionQueue;
 	private PlayerAction m_playerAction;
-	public GamePad.Index m_gamePadIndex;
 	private Vector2 m_inputVector;
+	[SerializeField]
+	private bool canShoot;
+
+	public GamePad.Index m_gamePadIndex;
 	public float m_playerSpeed;
 
 	void Start()
 	{
-		m_transform = GetComponent<Transform>();
+		m_rigidbody2D = GetComponent<Rigidbody2D>();
 
 		m_playerShooter = GetComponent<PlayerShooter>();
 		if(!m_playerShooter)
@@ -40,11 +41,11 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		ProcessPlayerInput();
-		ConsumePlayerInput();
+		ProcessPlayerMovement();
+		ProcessPlayerActions();
 	}
 
-	void ProcessPlayerInput()
+	void ProcessPlayerMovement()
 	{
 		if(m_gamePadIndex != GamePad.Index.Any)
 		{
@@ -54,31 +55,20 @@ public class PlayerController : MonoBehaviour
 			if(_inputLeftStick != Vector2.zero) { m_inputVector = _inputLeftStick; }
 			else { m_inputVector = _inputDpad; }
 
-			if(GamePad.GetButtonDown(GamePad.Button.X, m_gamePadIndex))
-			{
-				m_playerActionQueue.Enqueue(PlayerAction.FireSpell1);
-			}
-
-			if(GamePad.GetButtonDown(GamePad.Button.Y, m_gamePadIndex))
-			{
-				m_playerActionQueue.Enqueue(PlayerAction.FireSpell2);
-			}
-
-			if(GamePad.GetButtonDown(GamePad.Button.B, m_gamePadIndex))
-			{
-				m_playerActionQueue.Enqueue(PlayerAction.Block);
-			}
 		}
+		else
+		{
+			m_inputVector = Vector2.zero;
+		}
+
+		Vector2 _velocity = m_inputVector * m_playerSpeed;
+		m_rigidbody2D.velocity = _velocity;
 	}
 
-	void ConsumePlayerInput()
+	void ProcessPlayerActions()
 	{
-		if(m_inputVector != Vector2.zero)
+		if(canShoot && m_gamePadIndex != GamePad.Index.Any)
 		{
-			Vector2 _diffVector = m_inputVector * m_playerSpeed * Time.deltaTime;
-			m_transform.position += new Vector3(_diffVector.x, _diffVector.y, 0f);
 		}
-
-		
 	}
 }
