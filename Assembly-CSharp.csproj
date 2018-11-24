@@ -56,9 +56,11 @@
      <Compile Include="Assets\GamePadInput\Demo\DemoScript.cs" />
      <Compile Include="Assets\GamePadInput\GamePad.cs" />
      <Compile Include="Assets\Scripts\Arena\ManaSpawnerScript.cs" />
+     <Compile Include="Assets\Scripts\Collectibles\ManaPot.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerResources.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooter.cs" />
+     <Compile Include="Assets\Scripts\Spells\Spell.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/sonersound/projects/UnityProjects/retro-jam-cortica/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

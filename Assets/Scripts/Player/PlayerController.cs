@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 	private bool canShoot;
 
 	public GamePad.Index m_gamePadIndex;
+	public static GamePad.Button PLAYER_SPELL_ONE_BUTTON = GamePad.Button.X;
+	public static GamePad.Button PLAYER_SPELL_TWO_BUTTON = GamePad.Button.A;
+	public static GamePad.Button PLAYER_SPELL_BLOCK_BUTTON = GamePad.Button.B;
 	public float m_playerSpeed;
 
 	void Start()
@@ -69,6 +72,18 @@ public class PlayerController : MonoBehaviour
 	{
 		if(canShoot && m_gamePadIndex != GamePad.Index.Any)
 		{
+			if(GamePad.GetButtonDown(PLAYER_SPELL_ONE_BUTTON, m_gamePadIndex))
+			{
+				m_playerShooter.PlayerShoot(m_inputVector, 0);
+			}
+			else if(GamePad.GetButtonDown(PLAYER_SPELL_TWO_BUTTON, m_gamePadIndex))
+			{
+				m_playerShooter.PlayerShoot(m_inputVector, 1);
+			}
+			else if(GamePad.GetButtonDown(PLAYER_SPELL_BLOCK_BUTTON, m_gamePadIndex))
+			{
+				m_playerShooter.SpellBlock();
+			}
 		}
 	}
 }

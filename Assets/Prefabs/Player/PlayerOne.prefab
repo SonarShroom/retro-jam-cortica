@@ -116,8 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba11b2600d994c5b88f8c6ba5385518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canShoot: 1
   m_gamePadIndex: 1
-  m_playerSpeed: 0
+  m_playerSpeed: 5
 --- !u!114 &114859986870547588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ca711c2861648c9a2dbae0e3910afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerSpellPrefabs: []
+  m_playerSpellPrefabs:
+  - {fileID: 1026692565843006, guid: 0a6f4ed8dbb1d428c9f6ec8ee0b1a570, type: 2}
+  - {fileID: 0}
   m_absoluteOffset: 0
 --- !u!212 &212276146137782356
 SpriteRenderer:
