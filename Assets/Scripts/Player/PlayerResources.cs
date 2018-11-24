@@ -10,7 +10,7 @@ public class PlayerResources : MonoBehaviour
 	void Start()
 	{
 		m_playerHealth = m_maxPlayerHealth;
-		m_playerShots = m_maxPlayerHealth;
+		m_playerShots = m_maxPlayerShots;
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
