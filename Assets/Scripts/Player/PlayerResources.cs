@@ -40,6 +40,15 @@ public class PlayerResources : MonoBehaviour
 		}
 	}
 
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.gameObject.tag.Contains("Spell"))
+		{
+			Destroy(other.gameObject);
+			Destroy(gameObject);
+		}
+	}
+
 	public uint PlayerHealth
 	{
 		get { return m_playerHealth; }

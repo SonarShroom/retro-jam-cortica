@@ -88,8 +88,8 @@ public class PlayerController : MonoBehaviour
 			m_rigidbody2D.velocity = _velocity;
 		}
 
-		float _angle = Mathf.Atan2(m_lastNonZeroVector.x, m_lastNonZeroVector.y) * Mathf.Rad2Deg;
-		//m_aimReticule.transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
+		float _angle = Mathf.Atan2(m_lastNonZeroVector.y, m_lastNonZeroVector.x) * Mathf.Rad2Deg;
+		m_aimReticule.transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
 	}
 
 	void ProcessPlayerActions()
