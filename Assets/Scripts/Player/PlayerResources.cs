@@ -33,7 +33,7 @@ public class PlayerResources : MonoBehaviour
 			{
 				Debug.LogError("Object " + other.name + " has tag Spell, but has no spell component.");
 			}
-			else if (_otherSpell.Owner != gameObject)
+			else
 			{
 
 			}

@@ -40,7 +40,6 @@ public class PlayerShooter : MonoBehaviour
 												  _initialSpellPosition, 
 												  Quaternion.identity);
 				_newSpell.GetComponent<Spell>().SetSpellVelocity(_inputVector3D);
-				_newSpell.GetComponent<Spell>().Owner = gameObject;
 				m_playerResources.OnPlayerShoot();
 			}
 		}
