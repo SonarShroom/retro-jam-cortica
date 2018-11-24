@@ -55,7 +55,9 @@
   <ItemGroup>
      <Compile Include="Assets\GamePadInput\Demo\DemoScript.cs" />
      <Compile Include="Assets\GamePadInput\GamePad.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerResources.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerShooter.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/sonersound/projects/UnityProjects/retro-jam-cortica/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
