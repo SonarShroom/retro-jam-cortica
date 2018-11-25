@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spellColor: Red
-  m_maxBounces: 3
+  m_bounceSound: {fileID: 8300000, guid: 471893382e3184be0be35405665d5e56, type: 3}
   m_spellLevelSprite:
   - {fileID: 21300000, guid: ad14cf3ec46a34fb9ac93e77b360b674, type: 3}
   - {fileID: 21300000, guid: de6de3fadbb0c4852a0593e218b728b4, type: 3}
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_speedIncrementPerLevel: 2
   m_maxSpellLevel: 2
   m_currentSpellLevel: 0
+  m_maxBounces: 3
 --- !u!212 &212093067677194734
 SpriteRenderer:
   m_ObjectHideFlags: 1
