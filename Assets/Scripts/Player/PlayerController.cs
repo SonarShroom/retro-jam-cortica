@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	private PlayerAction m_playerAction;
 	private Vector2 m_inputVector;
 	private Vector2 m_lastNonZeroVector;
+
 	[SerializeField]
 	private bool m_canShoot;
 
@@ -82,14 +83,15 @@ public class PlayerController : MonoBehaviour
 
 	void ConsumePlayerMovement()
 	{
-		if(m_rigidbody2D)
-		{
-			Vector2 _velocity = m_inputVector * m_playerSpeed;
-			m_rigidbody2D.velocity = _velocity;
-		}
+		
+		Vector2 _velocity = m_inputVector * m_playerSpeed;
+		m_rigidbody2D.velocity = _velocity;
+
+		m_playerShooter.m_inputVector = m_lastNonZeroVector;
 
 		float _angle = Mathf.Atan2(m_lastNonZeroVector.y, m_lastNonZeroVector.x) * Mathf.Rad2Deg;
 		m_aimReticule.transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
+		m_aimReticule.transform.position = transform.position;
 	}
 
 	void ProcessPlayerActions()
@@ -98,20 +100,21 @@ public class PlayerController : MonoBehaviour
 		{
 			if(GamePad.GetButtonDown(PLAYER_SPELL_ONE_BUTTON, m_gamePadIndex))
 			{
-				m_playerShooter.PlayerShoot(m_lastNonZeroVector, 0);
+				m_playerShooter.SetupAnimatorShoot(0);
 			}
 			else if(GamePad.GetButtonDown(PLAYER_SPELL_TWO_BUTTON, m_gamePadIndex))
 			{
-				m_playerShooter.PlayerShoot(m_lastNonZeroVector, 1);
+				m_playerShooter.SetupAnimatorShoot(1);
 			}
 			else if(GamePad.GetButton(PLAYER_SPELL_1_BLOCK_BUTTON, m_gamePadIndex))
 			{
-				m_playerShooter.SpellBlock(m_lastNonZeroVector, 0);
+				m_playerShooter.SetupAnimatorBlock(0);
 			}
 			else if(GamePad.GetButton(PLAYER_SPELL_2_BLOCK_BUTTON, m_gamePadIndex))
 			{
-				m_playerShooter.SpellBlock(m_lastNonZeroVector, 1);
+				m_playerShooter.SetupAnimatorBlock(1);
 			}
 		}
 	}
+
 }

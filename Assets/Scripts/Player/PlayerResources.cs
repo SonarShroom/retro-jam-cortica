@@ -61,7 +61,7 @@ public class PlayerResources : MonoBehaviour
 		set { m_playerShots = value; }
 	}
 
-	public bool CanShoot()
+	public bool HasPlayerShotsAvailable()
 	{
 		return m_playerShots > 0;
 	}
