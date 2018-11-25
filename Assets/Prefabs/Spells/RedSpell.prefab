@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50691278519742306}
   - component: {fileID: 58949228558098166}
   m_Layer: 0
-  m_Name: Spell1
+  m_Name: RedSpell
   m_TagString: RedSpell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

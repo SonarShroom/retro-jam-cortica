@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212046799722367590}
   m_Layer: 0
   m_Name: Green Shield
-  m_TagString: Untagged
+  m_TagString: GreenShield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
