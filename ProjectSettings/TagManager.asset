@@ -6,6 +6,8 @@ TagManager:
   tags:
   - RedSpell
   - GreenSpell
+  - ManaPot
+  - GreenShield
   layers:
   - Default
   - TransparentFX

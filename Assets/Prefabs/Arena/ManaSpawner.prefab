@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285716898680232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c523a47f84fe942af42b5a4cbad69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaPot: {fileID: 1194026758317250, guid: abd2c922fdaca094494d490028fd5d57, type: 2}
+  manaPot: {fileID: 1139020279320072, guid: 295f8a06c0c60fc4493b273c0361fd18, type: 2}
   pots: []
   spawnRate: 1
   spawnTime: 0
