@@ -19,5 +19,13 @@ public class Spell : MonoBehaviour {
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
+        if (this.tag.Equals("RedSpell") && other.gameObject.tag == "RedShield")
+        {
+            //TODO: Deflect RedSpell on RedShield
+        }
+        if (this.tag.Equals("GreenSpell") && other.gameObject.tag == "GreenShield")
+        {
+            //TODO: Deflect GreenSpell on GreenShield
+        }
     }
 }
