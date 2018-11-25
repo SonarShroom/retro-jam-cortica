@@ -55,8 +55,8 @@ public class ManaSpawnerScript : MonoBehaviour {
     public void InstantiateManaPotLocation()
     {
         spawnTime += Time.deltaTime;
-        randomX = Random.Range(-1.6f, 1.6f);
-        randomY = Random.Range(-1.1f, 1.1f);
+        randomX = Random.Range(-4.0f, 4.0f);
+        randomY = Random.Range(-2.8f, 2.8f);
         spawnerLocation = new Vector2(randomX, randomY);
         pots.Add(Instantiate(manaPot, spawnerLocation, Quaternion.identity));
         spawnTime = 0.0f;

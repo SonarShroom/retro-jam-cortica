@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4181955300297638}
   - component: {fileID: 212439116106415312}
   - component: {fileID: 114103748077937520}
-  - component: {fileID: 111687126730076666}
   - component: {fileID: 61643571484975632}
+  - component: {fileID: 95893119401442930}
   m_Layer: 0
   m_Name: manaPot
   m_TagString: ManaPot
@@ -68,20 +68,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!111 &111687126730076666
-Animation:
+--- !u!95 &95893119401442930
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1139020279320072}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dcea7bc158eb67f4e8421b0dd10db2c8, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2a46ed9eda020241814bf39724025c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114103748077937520
 MonoBehaviour:
   m_ObjectHideFlags: 1
