@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerResources.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShooter.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
+     <Compile Include="Assets\Scripts\UI\AmmoTracker.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/sonersound/projects/UnityProjects/retro-jam-cortica/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	private bool m_canShoot;
 
-	public GameObject m_aimReticule;
+	public GameObject m_aimReticle;
 	public GamePad.Index m_gamePadIndex;
 	public static GamePad.Button PLAYER_SPELL_ONE_BUTTON = GamePad.Button.X;
 	public static GamePad.Button PLAYER_SPELL_TWO_BUTTON = GamePad.Button.A;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
 	{
-		if(!m_aimReticule)
+		if(!m_aimReticle)
 		{
 			Debug.LogError("No aim reticule child object found on object: " + name);
 		}
@@ -113,8 +113,8 @@ public class PlayerController : MonoBehaviour
 		m_playerShooter.m_inputVector = m_lastNonZeroVector;
 
 		float _angle = Mathf.Atan2(m_lastNonZeroVector.y, m_lastNonZeroVector.x) * Mathf.Rad2Deg;
-		m_aimReticule.transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
-		m_aimReticule.transform.position = transform.position;
+		m_aimReticle.transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
+		m_aimReticle.transform.position = transform.position;
 	}
 
 	void ProcessPlayerActions()

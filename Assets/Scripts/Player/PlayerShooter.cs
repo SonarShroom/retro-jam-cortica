@@ -16,8 +16,12 @@ public class PlayerShooter : MonoBehaviour
 	private List<GameObject> m_playerSpellPrefabs;
 	[SerializeField]
     private List<GameObject> m_playerShieldPrefabs;
+	[SerializeField]
+	private List<GameObject> m_playerSpellHoldPrefabs;
 	private GameObject m_stolenSpell;
 	private GameObject m_currentShield;
+	[SerializeField]
+	private AudioClip m_spellShootingSound;
 	private Animator m_animator;
 	private uint m_nextSpellIndex;
 	private float m_maxSpellShieldTime = 0.75f;
@@ -132,6 +136,7 @@ public class PlayerShooter : MonoBehaviour
 			m_playerResources.OnPlayerShoot();
 		}
 		_newSpell.GetComponent<Spell>().SetSpellVelocity(_inputVector3D);
+		AudioSource.PlayClipAtPoint(m_spellShootingSound, _initialSpellPosition);
 	}
 
 	private void SpellBlock()

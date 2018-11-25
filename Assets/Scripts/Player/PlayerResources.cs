@@ -6,8 +6,8 @@ public class PlayerResources : MonoBehaviour
 {
 
 	private PlayerShooter m_playerShooter;
-	[SerializeField]
-	private uint m_playerShots, m_maxPlayerShots;
+	public uint m_playerShots, m_maxPlayerShots;
+	public AudioClip m_deathSound;
 
 	void Start()
 	{
@@ -28,18 +28,15 @@ public class PlayerResources : MonoBehaviour
         }
 		//TODO: if has component of type spell,
 		//check who owner and if different or take damage.
-		else if(other.tag == "Spell");
+		else if(other.gameObject.tag.Contains("Spell"))
 		{
 			Spell _otherSpell = other.GetComponent<Spell>();
-			if(!_otherSpell)
-			{
-				Debug.LogError("Object " + other.name + " has tag Spell, but has no spell component.");
-			}
-			else
+			if(_otherSpell)
 			{
 				//TODO: Spawn particles
 				if(!m_playerShooter.IsShielding())
 				{
+					Destroy(GetComponent<PlayerController>().m_aimReticle);
 					Destroy(gameObject);
 				}
 			}
@@ -50,6 +47,7 @@ public class PlayerResources : MonoBehaviour
 	{
 		if(other.gameObject.tag.Contains("Spell"))
 		{
+			AudioSource.PlayClipAtPoint(m_deathSound, transform.position);
 			Destroy(other.gameObject);
 			Destroy(gameObject);
 		}

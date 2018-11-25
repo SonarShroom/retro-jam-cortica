@@ -7,6 +7,8 @@ public class Spell : MonoBehaviour {
     [SerializeField]
     private string m_spellColor = "Green";
 
+    public AudioClip m_bounceSound;
+
     public List<Sprite> m_spellLevelSprite;
 	public float m_initialSpellSpeed;
     public float m_speedIncrementPerLevel = 2;
@@ -37,6 +39,11 @@ public class Spell : MonoBehaviour {
             if(m_maxBounces == 0)
             {
                 Destroy(gameObject);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(m_bounceSound,
+                                            other.contacts[0].point);
             }
         }
 
