@@ -7,6 +7,7 @@ public class PlayerShooter : MonoBehaviour
 	private PlayerResources m_playerResources;
 	[SerializeField]
 	private List<GameObject> m_playerSpellPrefabs;
+    private List<GameObject> m_playerShieldPrefabs;
 
 	public float m_absoluteOffset;
 
@@ -45,8 +46,12 @@ public class PlayerShooter : MonoBehaviour
 		}
 	}
 
-	public void SpellBlock()
+	public void SpellBlock(Vector2 inputVector, int shieldIndex)
 	{
-		//TODO: Animator params for block animation
+        //TODO: Animator params for block animation
+        Vector3 _inputVector3D = new Vector3(inputVector.x, inputVector.y, 0f).normalized;
+        var playerObject = GameObject.Find("Player");
+        Vector3 _shieldPosition = playerObject.transform.position;
+        GameObject _newShield = Instantiate(m_playerShieldPrefabs[shieldIndex], _shieldPosition, Quaternion.identity);
 	}
 }

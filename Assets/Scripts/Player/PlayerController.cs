@@ -104,13 +104,13 @@ public class PlayerController : MonoBehaviour
 			{
 				m_playerShooter.PlayerShoot(m_lastNonZeroVector, 1);
 			}
-			else if(GamePad.GetButtonDown(PLAYER_SPELL_1_BLOCK_BUTTON, m_gamePadIndex))
+			else if(GamePad.GetButton(PLAYER_SPELL_1_BLOCK_BUTTON, m_gamePadIndex))
 			{
-				m_playerShooter.SpellBlock();
+				m_playerShooter.SpellBlock(m_lastNonZeroVector, 0);
 			}
-			else if(GamePad.GetButtonDown(PLAYER_SPELL_2_BLOCK_BUTTON, m_gamePadIndex))
+			else if(GamePad.GetButton(PLAYER_SPELL_2_BLOCK_BUTTON, m_gamePadIndex))
 			{
-				m_playerShooter.SpellBlock();
+				m_playerShooter.SpellBlock(m_lastNonZeroVector, 1);
 			}
 		}
 	}
