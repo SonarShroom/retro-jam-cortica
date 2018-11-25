@@ -121,6 +121,8 @@ public class PlayerShooter : MonoBehaviour
 			_newSpell.SetActive(true);
 			_newSpell.transform.position = _initialSpellPosition;
 			_newSpell.GetComponent<Spell>().LevelUp();
+			_newSpell.GetComponent<Spell>().m_maxBounces = 3;
+			m_stolenSpell = null;
 		}
 		else
 		{

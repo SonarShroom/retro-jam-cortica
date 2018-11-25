@@ -6,14 +6,13 @@ public class Spell : MonoBehaviour {
 
     [SerializeField]
     private string m_spellColor = "Green";
-    [SerializeField]
-    private uint m_maxBounces = 3;
 
     public List<Sprite> m_spellLevelSprite;
 	public float m_initialSpellSpeed;
     public float m_speedIncrementPerLevel = 2;
     public int m_maxSpellLevel = 2;
     public int m_currentSpellLevel = 0;
+    public uint m_maxBounces = 3;
 
 	public void SetSpellVelocity(Vector2 inputVector)
 	{

@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaPot: {fileID: 1139020279320072, guid: 295f8a06c0c60fc4493b273c0361fd18, type: 2}
   pots: []
-  spawnRate: 1
+  spawnRate: 2
   spawnTime: 0
   firstSpawnTime: 3
   spawnLimit: 5

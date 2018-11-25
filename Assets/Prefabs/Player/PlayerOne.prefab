@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerShots: 0
-  m_maxPlayerShots: 3
+  m_maxPlayerShots: 20
 --- !u!114 &114796538816310036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_aimReticule: {fileID: 0}
   m_gamePadIndex: 1
   m_playerSpeed: 5
+  m_playerSpeedSlow: 0
 --- !u!114 &114895976364602602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +157,7 @@ MonoBehaviour:
   - {fileID: 1417352233364978, guid: cc3ee2ad52cc5794f90c3a438b7b70c9, type: 2}
   m_inputVector: {x: 0, y: 0}
   m_absoluteOffset: 1
+  m_currentSpellShieldTime: 0
 --- !u!212 &212231847706335446
 SpriteRenderer:
   m_ObjectHideFlags: 1
