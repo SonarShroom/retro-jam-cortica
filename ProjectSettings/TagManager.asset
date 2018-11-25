@@ -9,6 +9,7 @@ TagManager:
   - ManaPot
   - GreenShield
   - RedShield
+  - Glass
   layers:
   - Default
   - TransparentFX

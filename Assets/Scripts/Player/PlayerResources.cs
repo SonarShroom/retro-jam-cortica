@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerResources : MonoBehaviour
 {
+
+	private PlayerShooter m_playerShooter;
 	[SerializeField]
-	private uint m_playerHealth, m_maxPlayerHealth, m_playerShots, m_maxPlayerShots;
+	private uint m_playerShots, m_maxPlayerShots;
 
 	void Start()
 	{
-		m_playerHealth = m_maxPlayerHealth;
 		m_playerShots = m_maxPlayerShots;
+		m_playerShooter = GetComponent<PlayerShooter>();
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +37,11 @@ public class PlayerResources : MonoBehaviour
 			}
 			else
 			{
-
+				//TODO: Spawn particles
+				if(!m_playerShooter.IsShielding())
+				{
+					Destroy(gameObject);
+				}
 			}
 		}
 	}
@@ -47,18 +53,6 @@ public class PlayerResources : MonoBehaviour
 			Destroy(other.gameObject);
 			Destroy(gameObject);
 		}
-	}
-
-	public uint PlayerHealth
-	{
-		get { return m_playerHealth; }
-		set { m_playerHealth = value; }
-	}
-
-	public uint PlayerShots
-	{
-		get { return m_playerShots; }
-		set { m_playerShots = value; }
 	}
 
 	public bool HasPlayerShotsAvailable()

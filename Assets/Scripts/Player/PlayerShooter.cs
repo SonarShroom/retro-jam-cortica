@@ -16,11 +16,15 @@ public class PlayerShooter : MonoBehaviour
 	private List<GameObject> m_playerSpellPrefabs;
 	[SerializeField]
     private List<GameObject> m_playerShieldPrefabs;
+	private GameObject m_stolenSpell;
+	private GameObject m_currentShield;
 	private Animator m_animator;
 	private uint m_nextSpellIndex;
+	private float m_maxSpellShieldTime = 0.75f;
 
 	public Vector2 m_inputVector;
 	public float m_absoluteOffset;
+	public float m_currentSpellShieldTime;
 
 	void Start()
 	{
@@ -31,16 +35,34 @@ public class PlayerShooter : MonoBehaviour
 		}
 
 		m_animator = GetComponent<Animator>();
-		if(!m_animator)
-		{
-			Debug.LogError("No animator present on gameobject: " + name);
-		}
 
 		if(m_absoluteOffset == 0f)
 		{
 			Debug.LogWarning("The player offset on game object " + name + " is 0." + 
 							 "The spells may spawn inside the player.");
 		}
+	}
+
+	void Update()
+	{
+		if(m_currentSpellShieldTime < 0f)
+		{
+			Destroy(m_currentShield);
+		}
+		else
+		{
+			m_currentSpellShieldTime -= Time.deltaTime;
+		}
+	}
+
+	public bool IsShielding()
+	{
+		return m_currentShield != null;
+	}
+	
+	public bool IsHoldingSpell()
+	{
+		return m_stolenSpell != null;
 	}
 
 	public void SetupAnimatorShoot(uint spellIndex)
@@ -71,6 +93,7 @@ public class PlayerShooter : MonoBehaviour
 
 	public void CastNextAction()
 	{
+		Debug.Log("m_nextShooterAction = " + m_nextShooterAction);
 		switch(m_nextShooterAction)
 		{
 			case PlayerShooterAction.Spell:
@@ -82,21 +105,41 @@ public class PlayerShooter : MonoBehaviour
 		}
 	}
 
+	public void SpellSteal(GameObject spell)
+	{
+		m_stolenSpell = spell;
+	}
+
 	private void PlayerShoot()
 	{
-		Vector3 _inputVector3D = new Vector3(inputVector.x, inputVector.y, 0f).normalized;
+		Vector3 _inputVector3D = new Vector3(m_inputVector.x, m_inputVector.y, 0f).normalized;
 		Vector3 _initialSpellPosition = transform.position + _inputVector3D * m_absoluteOffset;
-		GameObject _newSpell = Instantiate(m_playerSpellPrefabs[spellIndex], 
+		GameObject _newSpell;
+		if(m_stolenSpell)
+		{
+			_newSpell = m_stolenSpell;
+			_newSpell.SetActive(true);
+			_newSpell.transform.position = _initialSpellPosition;
+			_newSpell.GetComponent<Spell>().LevelUp();
+		}
+		else
+		{
+			_newSpell = Instantiate(m_playerSpellPrefabs[(int)m_nextSpellIndex], 
 											_initialSpellPosition, 
 											Quaternion.identity);
+			m_playerResources.OnPlayerShoot();
+		}
 		_newSpell.GetComponent<Spell>().SetSpellVelocity(_inputVector3D);
-		m_playerResources.OnPlayerShoot();
 	}
 
 	private void SpellBlock()
 	{
         //TODO: Spawn blocking shield for a small ammount of time
-		GameObject _newSpellBlock = Instantiate(m_playerShieldPrefabs[m_nextSpellIndex],
+		if(!m_currentShield)
+		{
+			m_currentShield = Instantiate(m_playerShieldPrefabs[(int)m_nextSpellIndex],
 												transform);
+			m_currentSpellShieldTime = m_maxSpellShieldTime;
+		}
 	}
 }

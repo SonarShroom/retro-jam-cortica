@@ -4,28 +4,56 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour {
 
-	public float m_spellSpeed;
+    [SerializeField]
+    private string m_spellColor = "Green";
+    [SerializeField]
+    private uint m_maxBounces = 3;
+
+    public List<Sprite> m_spellLevelSprite;
+	public float m_initialSpellSpeed;
+    public float m_speedIncrementPerLevel = 2;
+    public int m_maxSpellLevel = 2;
+    public int m_currentSpellLevel = 0;
 
 	public void SetSpellVelocity(Vector2 inputVector)
 	{
 		Rigidbody2D _rigidbody = GetComponent<Rigidbody2D>();
-		_rigidbody.velocity = inputVector * m_spellSpeed;
+		_rigidbody.velocity = inputVector * (m_initialSpellSpeed + m_currentSpellLevel * m_speedIncrementPerLevel);
 	}
+
+    public void LevelUp()
+    {
+        if(!(m_currentSpellLevel >= m_maxSpellLevel))
+        {
+            m_currentSpellLevel++;
+        }
+        GetComponent<SpriteRenderer>().sprite = m_spellLevelSprite[m_currentSpellLevel];
+    }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.tag == "Glass")
+        {
+            m_maxBounces--;
+            if(m_maxBounces == 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         if (other.gameObject.tag.Contains("Spell"))
         {
             Destroy(gameObject);
-            Destroy(other.gameObject);
         }
-        if (this.tag.Equals("RedSpell") && other.gameObject.tag == "RedShield")
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == m_spellColor + "Shield")
         {
-            //TODO: Deflect RedSpell on RedShield
-        }
-        if (this.tag.Equals("GreenSpell") && other.gameObject.tag == "GreenShield")
-        {
-            //TODO: Deflect GreenSpell on GreenShield
+            //TODO: Hold spell and change its level
+            gameObject.SetActive(false);
+            other.transform.parent.gameObject.GetComponent<PlayerShooter>().SpellSteal(gameObject);
         }
     }
 }

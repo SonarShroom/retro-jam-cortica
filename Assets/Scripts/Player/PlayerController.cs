@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private Rigidbody2D m_rigidbody2D;
+	private Animator m_animator;
 	private PlayerShooter m_playerShooter;
 	private PlayerAction m_playerAction;
 	private Vector2 m_inputVector;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
 	public static GamePad.Button PLAYER_SPELL_1_BLOCK_BUTTON = GamePad.Button.Y;
 	public static GamePad.Button PLAYER_SPELL_2_BLOCK_BUTTON = GamePad.Button.B;
 	public float m_playerSpeed;
+	public float m_playerSpeedSlow;
 
 	void Start()
 	{
@@ -40,6 +42,12 @@ public class PlayerController : MonoBehaviour
 		if(!m_rigidbody2D)
 		{
 			Debug.LogError("No Rigidbody2D component detected on the gameobject: " + name);
+		}
+
+		m_animator = GetComponent<Animator>();
+		if(!m_animator)
+		{
+			Debug.LogError("No Animator component detected on the game object: " + name);
 		}
 
 		m_playerShooter = GetComponent<PlayerShooter>();
@@ -83,9 +91,24 @@ public class PlayerController : MonoBehaviour
 
 	void ConsumePlayerMovement()
 	{
-		
-		Vector2 _velocity = m_inputVector * m_playerSpeed;
+		Vector2 _velocity;
+		if(!m_playerShooter.IsHoldingSpell())
+		{
+			_velocity = m_inputVector * m_playerSpeed;
+		}
+		else
+		{
+			_velocity = m_inputVector * m_playerSpeedSlow;
+		}
 		m_rigidbody2D.velocity = _velocity;
+
+		m_animator.SetFloat("VerticalVelocity", m_inputVector.y);
+		m_animator.SetFloat("HorizontalVelocity", m_inputVector.x);
+		if(Mathf.Abs(m_inputVector.x) != Mathf.Abs(m_inputVector.y))
+		{
+			m_animator.SetBool("VerticalVelocityGreater", Mathf.Abs(m_inputVector.x) < Mathf.Abs(m_inputVector.y));
+			m_animator.SetBool("HorizontalVelocityGreater", Mathf.Abs(m_inputVector.x) > Mathf.Abs(m_inputVector.y));
+		}
 
 		m_playerShooter.m_inputVector = m_lastNonZeroVector;
 
